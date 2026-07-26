@@ -165,3 +165,36 @@ $$\mathrm{HARI} = \frac{1}{n}\sum_{i=1}^{n}\frac{1}{1+z_i}.$$
 Large errors receive proportionally lower scores, making HARI particularly sensitive to heavy-tail forecasting failures.
 
 RSI, QRS, and HARI are bounded in $(0,1]$ and normalized by the training-set robust scale. They complement conventional metrics from different perspectives: MAE and RMSE measure absolute error magnitude, RSI measures typical-case stability, QRS measures error concentration, and HARI measures tail reliability.
+
+## 5. PulseDiff
+
+PulseDiff is a robust day-ahead electricity price forecasting baseline consisting of three components:
+
+- **Dual-stream encoding:** A 2D CNN encodes the $6\times24$ historical price matrix, while an MLP independently encodes calendar and exogenous covariates. An auxiliary head classifies price regime, trend, and volatility.
+- **Dynamic anchor:** Five historical price references are adaptively combined with a bounded correction to produce a stable 24-hour anchor.
+- **Residual diffusion:** A confidence-gated diffusion process predicts the normalized residual relative to the anchor using v-prediction and DDIM sampling.
+
+The model is jointly optimized for anchor accuracy, final prediction accuracy, robustness, trajectory shape, diffusion reconstruction, market-state classification, and gate regularization. During inference, multiple stochastic forecasts are averaged to produce the final prediction
+
+## 6. Project Structure
+
+The expected structure of files is:
+
+```text
+GridPulse/
+├── PulseDiff/
+│   ├── __init__.py
+│   ├── config.py
+│   ├── config_liaoning.yaml
+│   ├── config_shandong.yaml
+│   ├── data.py
+│   ├── model.py
+│   └── train_common.py
+├── datasets/
+│   ├── GridPulse_Liaoning_sample.csv  (replace with the full version)
+│   └── GridPulse_Shandong_sample.csv  (replace with the full version)
+├── requirements.txt
+├── run_liaoning.py
+├── run_shandong.py
+└── README.md
+```
