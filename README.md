@@ -58,8 +58,8 @@ The following table provides a brief description of the datasets:
       <td>Jan. 1–Dec. 30, 2025</td>
       <td align="right">8,736</td>
       <td align="right">8,736</td>
-      <td align="right">21</td>
-      <td>1 hour</td>
+      <td rowspan="2" align="right">21</td>
+      <td rowspan="2">1 hour</td>
       <td rowspan="2">
         Real-time prices, system load, generation,
         inter-provincial exchange, and weather
@@ -70,8 +70,6 @@ The following table provides a brief description of the datasets:
       <td>Mar. 1, 2025–Mar. 1, 2026</td>
       <td align="right">8,760</td>
       <td align="right">8,752</td>
-      <td align="right">21</td>
-      <td>1 hour</td>
     </tr>
   </tbody>
 </table>
@@ -127,3 +125,71 @@ The Liaoning dataset uses two province-specific generation variables:
 | `non-market generation` | Output from generation resources not participating directly in market clearing | MW   |
 
 The Liaoning dataset contains 8,760 hourly records, of which 8,752 have valid target prices after removing eight sentinel values. It contains 755 negative-price hours and 2,379 zero-price hours, accounting for 8.63% and 27.18% of the valid target series, respectively. Its prices range from −100.00 to 1,500.00 CNY/MWh and exhibit stronger absolute volatility and heavier positive tails than those in Shandong.
+
+## 4. Evaluation Metrics
+
+GridPulse reports three conventional forecasting metrics—MAE, RMSE, and sMAPE—together with three robustness-oriented metrics: RSI, QRS, and HARI. Lower values are better for MAE, RMSE, and sMAPE, whereas higher values are better for RSI, QRS, and HARI.
+
+### 4.1 Robust Scale and Normalized Error
+
+To support scale-independent comparison across markets, the robust metrics use a scale estimated solely from the training targets:
+
+$$
+\hat{\sigma}
+=
+1.4826 \cdot \operatorname{MAD}
+\left(\Delta y_{\mathrm{train}}\right),
+$$
+
+where $\Delta y_{\mathrm{train}}$ denotes the first-order difference series. Given predictions $\hat{y}_i$ and targets $y_i$, the normalized error and normalized log-error are
+
+$$
+z_i = \frac{|\hat{y}_i-y_i|}{\hat{\sigma}},
+\qquad
+\ell_i = \log(1+z_i).
+$$
+
+### 4.2 Robust Stability Index
+
+The Robust Stability Index (RSI) evaluates both the typical magnitude and the dispersion of normalized log-errors:
+
+$$
+\mathrm{RSI}
+=
+\frac{1}
+{1+\operatorname{median}(\boldsymbol{\ell})
++\operatorname{MAD}(\boldsymbol{\ell})}.
+$$
+
+A higher RSI indicates that prediction errors are generally small and stable.
+
+### 4.3 Quantile Robust Score
+
+The Quantile Robust Score (QRS) measures the central tendency and interquartile concentration of normalized log-errors:
+
+$$
+\mathrm{QRS}
+=
+\frac{1}
+{1+Q_{0.50}(\boldsymbol{\ell})
++\left(Q_{0.75}(\boldsymbol{\ell})
+-Q_{0.25}(\boldsymbol{\ell})\right)}.
+$$
+
+A higher QRS indicates that errors are more tightly concentrated around a low central value.
+
+### 4.4 Heavy-tail Adjusted Reliability Index
+
+The Heavy-tail Adjusted Reliability Index (HARI) evaluates reliability under large normalized errors without log compression:
+
+$$
+\mathrm{HARI}
+=
+\frac{1}{n}
+\sum_{i=1}^{n}
+\frac{1}{1+z_i}.
+$$
+
+Large errors receive proportionally lower scores, making HARI particularly sensitive to heavy-tail forecasting failures.
+
+RSI, QRS, and HARI are bounded in $(0,1]$ and normalized by the training-set robust scale. They complement conventional metrics from different perspectives: MAE and RMSE measure absolute error magnitude, RSI measures typical-case stability, QRS measures error concentration, and HARI measures tail reliability.
