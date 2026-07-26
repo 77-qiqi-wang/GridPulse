@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-"""CDE-ARDiff: covariate-conditioned dynamic-anchor residual diffusion."""
 import math
 import torch
 import torch.nn as nn
@@ -96,7 +95,7 @@ class ResidualDenoiser(nn.Module):
         return self.net(torch.cat([x, anchor, z_price, z_cov, guide, te], 1))
 
 
-class CDEARDiff(nn.Module):
+class PulseDiff(nn.Module):
     def __init__(self, cfg, feat_dim, residual_scale=None, class_weights=None):
         super().__init__()
         self.cfg = cfg

@@ -1,0 +1,93 @@
+data_path: ./datasets/GridPulse_Liaoning.csv
+sheet_name: Sheet1
+time_col: Time
+target_col: Real-time price
+output_dir: ./outputs_liaoning
+market: liaoning
+train_ratio: 0.7
+val_ratio: 0.1
+pred_len: 24
+rows: 6
+cols: 24
+patch_len: 6
+warmup_rows: 0
+d_model: 80
+dropout: 0.20
+diffusion_steps: 300
+ddim_steps: 10
+mc_samples: 5
+norm_clip: 6.0
+ddim_clip: 8.0
+residual_quantile: 0.92
+anchor_init_weights: [0.25, 0.45, 0.20, 0.05, 0.05]
+anchor_correction_init: -1.4
+diffusion_gate_bias: -3.5
+anchor_weight: 1.25
+final_weight: 1.10
+robust_weight: 0.35
+shape_weight: 0.15
+diffusion_weight: 0.16
+x0_weight: 0.10
+cls_weight: 0.10
+gate_reg_weight: 0.015
+val_metric_bonus: 0.03
+post_calibrate: false
+refit_train_val_epochs: 0
+tree_auxiliary: false
+horizon_loss_weights: [1, 1, 1, 1, 1, 1, 1.05, 1.05, 1.1, 1.1, 1.1, 1.1, 1.1, 1.1, 1.1, 1.1, 1.1, 1.15, 1.15, 1.15, 1.15, 1.1, 1.05, 1.05]
+batch_size: 96
+epochs: 300
+patience: 60
+lr: 0.0003
+weight_decay: 0.0003
+ema_decay: 0.999
+grad_clip: 1.0
+seed: 2024
+num_workers: 0
+use_gpu: true
+selected_historical_features:
+  - Real-time tie-line power
+  - Real-time load
+  - Photovoltaic output
+  - wind output
+  - Hydro/pumped-storage output
+  - renewable total
+  - non-market generation
+  - nuclear output
+  - 2m air temperature
+  - 2m dew-point temperature
+  - Sea-level pressure
+  - surface pressure
+  - Total precipitation
+  - rainfall
+  - snowfall
+  - 2m relative humidity
+  - apparent temperature
+  - 10m gust speed
+  - 10m wind direction
+  - 10m wind speed
+  - 100m wind speed
+use_future_known_covariates: true
+selected_future_known_features:
+  - Real-time tie-line power
+  - Real-time load
+  - Photovoltaic output
+  - wind output
+  - Hydro/pumped-storage output
+  - renewable total
+  - non-market generation
+  - nuclear output
+  - 2m air temperature
+  - weather code
+  - 2m dew-point temperature
+  - Sea-level pressure
+  - surface pressure
+  - Total precipitation
+  - rainfall
+  - snowfall
+  - 2m relative humidity
+  - apparent temperature
+  - 10m gust speed
+  - 10m wind direction
+  - 10m wind speed
+  - 100m wind speed

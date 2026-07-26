@@ -1,0 +1,107 @@
+data_path: ./datasets/GridPulse_Shandong.csv
+sheet_name: Sheet1
+time_col: Time
+target_col: Real-time price
+output_dir: ./outputs_shandong
+market: shandong
+train_ratio: 0.7
+val_ratio: 0.1
+pred_len: 24
+rows: 6
+cols: 24
+patch_len: 6
+warmup_rows: 0
+d_model: 80
+dropout: 0.20
+diffusion_steps: 300
+ddim_steps: 10
+mc_samples: 5
+norm_clip: 6.0
+ddim_clip: 8.0
+residual_quantile: 0.90
+anchor_init_weights: [0.45, 0.20, 0.25, 0.05, 0.05]
+anchor_correction_init: -1.8
+diffusion_gate_bias: -4.0
+anchor_weight: 1.40
+final_weight: 1.10
+robust_weight: 0.45
+shape_weight: 0.20
+diffusion_weight: 0.12
+x0_weight: 0.08
+cls_weight: 0.08
+gate_reg_weight: 0.02
+val_metric_bonus: 0.04
+post_calibrate: false
+refit_train_val_epochs: 0
+refit_lr: 0.00008
+tree_auxiliary: true
+tree_aux_hourly: false
+tree_aux_estimators: 160
+tree_aux_max_depth: 8
+tree_aux_min_samples_leaf: 3
+tree_aux_n_jobs: 1
+tree_aux_weight_grid: [0.50, 0.65, 0.75, 0.85, 1.00]
+tree_aux_min_weight: 0.50
+tree_aux_max_weight: 1.00
+post_calibrate_ridge: 40.0
+post_calibrate_slope_min: 0.70
+post_calibrate_slope_max: 1.25
+post_calibrate_affine_gain: 0.998
+post_calibrate_affine_mix: 0.45
+post_calibrate_hours_offset_only: [10, 11, 12, 13, 14, 15]
+horizon_loss_weights: [1, 1, 1, 1, 1, 1, 1.1, 1.2, 1.55, 1.85, 2.1, 2.2, 2.2, 2.05, 1.7, 1.4, 1.2, 1.1, 1.05, 1.05, 1.05, 1, 1, 1]
+batch_size: 96
+epochs: 300
+patience: 60
+lr: 0.0003
+weight_decay: 0.0003
+ema_decay: 0.999
+grad_clip: 1.0
+seed: 2024
+num_workers: 0
+use_gpu: true
+selected_historical_features:
+  - Real-time tie-line power
+  - Real-time load
+  - Photovoltaic output
+  - wind output
+  - Hydro/pumped-storage output
+  - local generation
+  - Total Self-Owned Generation
+  - nuclear output
+  - 2m air temperature
+  - 2m dew-point temperature
+  - Sea-level pressure
+  - surface pressure
+  - Total precipitation
+  - rainfall
+  - snowfall
+  - 2m relative humidity
+  - apparent temperature
+  - 10m gust speed
+  - 10m wind direction
+  - 10m wind speed
+  - 100m wind speed
+use_future_known_covariates: true
+selected_future_known_features:
+  - Real-time tie-line power
+  - Real-time load
+  - Photovoltaic output
+  - wind output
+  - Hydro/pumped-storage output
+  - local generation
+  - Total Self-Owned Generation
+  - nuclear output
+  - 2m air temperature
+  - 2m dew-point temperature
+  - Sea-level pressure
+  - surface pressure
+  - Total precipitation
+  - rainfall
+  - snowfall
+  - 2m relative humidity
+  - apparent temperature
+  - 10m gust speed
+  - 10m wind direction
+  - 10m wind speed
+  - 100m wind speed

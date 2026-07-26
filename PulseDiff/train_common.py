@@ -7,8 +7,8 @@ import torch
 from torch.utils.data import ConcatDataset, DataLoader
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score, classification_report
 from sklearn.ensemble import ExtraTreesRegressor
-from data import load_data_strict, add_causal_features, build_samples, train_only_labels, build_loaders, inverse_yj
-from model import CDEARDiff
+from .data import load_data_strict, add_causal_features, build_samples, train_only_labels, build_loaders, inverse_yj
+from .model import PulseDiff
 
 
 def set_seed(seed):
@@ -200,7 +200,7 @@ def evaluate(model, loader, cfg, device, yj, cmin, cmax, outdir, calibrator=None
     raw_m=calc_metrics(y,raw_p); raw_m.update(robust_metrics(y,raw_p,rs))
     anchor_m=calc_metrics(y,a); anchor_m.update(robust_metrics(y,a,rs))
     base_m=calc_metrics(y,b); base_m.update(robust_metrics(y,b,rs))
-    print("\nCDE-ARDiff Results")
+    print("\nPulseDiff Results")
     for k,v in m.items(): print(f"  {k}: {v:.4f}")
     print(f"  AnchorMAE: {anchor_m['MAE']:.4f}, BaseMAE: {base_m['MAE']:.4f}")
     rows=[]
@@ -214,7 +214,7 @@ def evaluate(model, loader, cfg, device, yj, cmin, cmax, outdir, calibrator=None
         cols[f"True_H{h+1}"]=y[:,h]; cols[f"Pred_H{h+1}"]=p[:,h]; cols[f"RawPred_H{h+1}"]=raw_p[:,h]; cols[f"Anchor_H{h+1}"]=a[:,h]; cols[f"Base_H{h+1}"]=b[:,h]
         if tree_pred is not None: cols[f"TreeAux_H{h+1}"]=tree_pred[:,h]
     res=pd.DataFrame(cols)
-    summary_rows=[{ "Model":"CDE-ARDiff", **m }, { "Model":"CDE-ARDiff-Raw", **raw_m }, { "Model":"Anchor", **anchor_m }, { "Model":"Base", **base_m }]
+    summary_rows=[{ "Model":"PulseDiff", **m }, { "Model":"PulseDiff-Raw", **raw_m }, { "Model":"Anchor", **anchor_m }, { "Model":"Base", **base_m }]
     if tree_pred is not None:
         tree_m=calc_metrics(y,tree_pred); tree_m.update(robust_metrics(y,tree_pred,rs)); summary_rows.append({"Model":"TreeAux", **tree_m})
     summary=pd.DataFrame(summary_rows)
@@ -224,12 +224,12 @@ def evaluate(model, loader, cfg, device, yj, cmin, cmax, outdir, calibrator=None
 
 def main(cfg):
     cfg.ensure_dirs(); set_seed(cfg.seed); outdir=Path(cfg.output_dir); device=torch.device("cuda" if torch.cuda.is_available() and cfg.use_gpu else "cpu")
-    print(f"Device: {device}\nCDE-ARDiff")
+    print(f"Device: {device}\nPulseDiff")
     df,yj,cmin,cmax=load_data_strict(cfg); df,ctx,fut,_,_=add_causal_features(df,cfg); matrix,feat,y,hours,segs,_,bd,bw=build_samples(df,cfg,ctx,fut)
     trn=int(len(y)*cfg.train_ratio); labels,th=train_only_labels(y,trn); dsets,loaders,scaler=build_loaders(cfg,matrix,feat,y,hours,segs,labels,bd,bw)
     print(f"Samples: train={len(dsets[0])}, val={len(dsets[1])}, test={len(dsets[2])}\nFeature dim: {dsets[0].feat.shape[1]}")
     cw=(class_weights(labels[0][:trn]),class_weights(labels[1][:trn]),class_weights(labels[2][:trn])); print(f"Auto class weights: reg={cw[0]}, tri={cw[1]}, vol={cw[2]}")
-    model=CDEARDiff(cfg,dsets[0].feat.shape[1],residual_scale_from_train(y[:trn],bd[:trn],bw[:trn],cfg),cw).to(device); print(f"Parameters: {sum(p.numel() for p in model.parameters() if p.requires_grad):,}")
+    model=PulseDiff(cfg,dsets[0].feat.shape[1],residual_scale_from_train(y[:trn],bd[:trn],bw[:trn],cfg),cw).to(device); print(f"Parameters: {sum(p.numel() for p in model.parameters() if p.requires_grad):,}")
     opt=torch.optim.AdamW(model.parameters(),lr=cfg.lr,weight_decay=cfg.weight_decay); sch=torch.optim.lr_scheduler.OneCycleLR(opt,max_lr=cfg.lr,epochs=cfg.epochs,steps_per_epoch=len(loaders[0]),pct_start=0.12); ema=EMA(model,cfg.ema_decay)
     best,best_state,bad,logs=float("inf"),None,0,[]; t0=time.time()
     for ep in range(cfg.epochs):
