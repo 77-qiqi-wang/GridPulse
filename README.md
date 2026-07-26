@@ -134,32 +134,32 @@ GridPulse reports three conventional forecasting metricsâ€”MAE, RMSE, and sMAPEâ
 
 To support scale-independent comparison across markets, the robust metrics use a scale estimated solely from the training targets:
 
-$$
+```math
 \hat{\sigma}
 =
 1.4826 \cdot \operatorname{MAD}
-\left(\Delta y_{\mathrm{train}}\right),
-$$
+\left(\Delta y_{\mathrm{train}}\right).
+```
 
 where $\Delta y_{\mathrm{train}}$ denotes the first-order difference series. Given predictions $\hat{y}_i$ and targets $y_i$, the normalized error and normalized log-error are
 
-$$
+```math
 z_i = \frac{|\hat{y}_i-y_i|}{\hat{\sigma}},
 \qquad
 \ell_i = \log(1+z_i).
-$$
+```
 
 ### 4.2 Robust Stability Index
 
 The Robust Stability Index (RSI) evaluates both the typical magnitude and the dispersion of normalized log-errors:
 
-$$
+```math
 \mathrm{RSI}
 =
 \frac{1}
 {1+\operatorname{median}(\boldsymbol{\ell})
 +\operatorname{MAD}(\boldsymbol{\ell})}.
-$$
+```
 
 A higher RSI indicates that prediction errors are generally small and stable.
 
@@ -167,14 +167,14 @@ A higher RSI indicates that prediction errors are generally small and stable.
 
 The Quantile Robust Score (QRS) measures the central tendency and interquartile concentration of normalized log-errors:
 
-$$
+```math
 \mathrm{QRS}
 =
 \frac{1}
 {1+Q_{0.50}(\boldsymbol{\ell})
 +\left(Q_{0.75}(\boldsymbol{\ell})
 -Q_{0.25}(\boldsymbol{\ell})\right)}.
-$$
+```
 
 A higher QRS indicates that errors are more tightly concentrated around a low central value.
 
@@ -182,13 +182,13 @@ A higher QRS indicates that errors are more tightly concentrated around a low ce
 
 The Heavy-tail Adjusted Reliability Index (HARI) evaluates reliability under large normalized errors without log compression:
 
-$$
+```math
 \mathrm{HARI}
 =
 \frac{1}{n}
 \sum_{i=1}^{n}
 \frac{1}{1+z_i}.
-$$
+```
 
 Large errors receive proportionally lower scores, making HARI particularly sensitive to heavy-tail forecasting failures.
 
