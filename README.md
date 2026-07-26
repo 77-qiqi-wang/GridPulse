@@ -7,4 +7,4 @@ GridPulse is a challenging benchmark for electricity price forecasting in provin
 ## 2. Install
 
 
-## 3, Dataset
+## 3. Dataset
