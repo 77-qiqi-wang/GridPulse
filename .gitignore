@@ -1,1 +1,6 @@
 .idea/
+/LLM_test.py
+/prompt_temp.md
+/.gitignore
+/datasets/GridPulse_Shandong.csv
+/datasets/GridPulse_Liaoning.csv
