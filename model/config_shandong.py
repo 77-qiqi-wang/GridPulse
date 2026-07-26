@@ -4,11 +4,11 @@ import os
 
 @dataclass
 class Config:
-    data_path: str = r"D:\Desktop\研究生\课题组\研究课题-电价预测\文献及数据集\山东数据集\GridPulse_Shandong.csv"
+    data_path: str = r"./datasets/GridPulse_Shandong.csv"
     sheet_name: str = "Sheet1"
     time_col: str = "Time"
     target_col: str = "Real-time price"
-    output_dir: str = r"D:\Desktop\山东电价预测\RHC_CDE_ARDiff\outputs_shandong"
+    output_dir: str = r"./outputs_shandong"
     market: str = "shandong"
     train_ratio: float = 0.7
     val_ratio: float = 0.1
