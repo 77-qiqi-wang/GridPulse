@@ -36,7 +36,7 @@ The results are saved to `outputs_liaoning/` and `outputs_shandong/`, respective
 
 GridPulse contains two provincial spot-market datasets collected from Shandong and Liaoning, China. The complete data sources can be accessed through [Google Drive]().
 
-#### 3.1 Dataset Overview
+### 3.1 Dataset Overview
 
 The following table provides a brief description of the datasets:
 
@@ -106,7 +106,7 @@ Most fields share the same definition across the Shandong and Liaoning datasets:
 | `10m wind speed`              | Wind speed at 10 metres                                      | m/s     |
 | `100m wind speed`             | Wind speed at 100 metres, reflecting conditions relevant to wind generation | m/s     |
 
-##### 3.2.1 Shandong-Specific Fields
+#### 3.2.1 Shandong-Specific Fields
 
 The Shandong dataset contains two additional operation-side variables:
 
@@ -117,7 +117,7 @@ The Shandong dataset contains two additional operation-side variables:
 
 The Shandong dataset contains 8,736 complete hourly observations. Its real-time prices range from −95.10 to 1,408.15 CNY/MWh, including 1,399 negative-price hours, which account for 16.01% of the target series. These records capture frequent negative prices and abrupt regime changes associated with renewable oversupply and rapid supply–demand rebalancing.
 
-##### 3.2.2 Liaoning-Specific Fields
+#### 3.2.2 Liaoning-Specific Fields
 
 The Liaoning dataset uses two province-specific generation variables:
 
