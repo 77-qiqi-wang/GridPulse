@@ -198,8 +198,8 @@ GridPulse/
 │   ├── model.py
 │   └── train_common.py
 ├── datasets/
-│   ├── GridPulse_Liaoning_sample.csv  (replace with the full version)
-│   └── GridPulse_Shandong_sample.csv  (replace with the full version)
+│   ├── GridPulse_Liaoning_sample.csv
+│   └── GridPulse_Shandong_sample.csv
 ├── requirements.txt
 ├── run_liaoning.py
 ├── run_shandong.py
