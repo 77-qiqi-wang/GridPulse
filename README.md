@@ -68,7 +68,7 @@ The following table provides a brief description of the datasets:
       <td rowspan="2" align="right">21</td>
       <td rowspan="2">1 hour</td>
       <td rowspan="2">
-        Real-time prices, system load, generation,
+        System load, generation,
         inter-provincial exchange, and weather
       </td>
     </tr>
