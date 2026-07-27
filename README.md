@@ -1,10 +1,13 @@
+![fig1](./imgs/fig1.svg)
+
 # GridPulse: A Benchmark for Electricity Price Forecasting under Extreme Market Dynamics
 
 ## 1. Overview
 
 <p align="center">
-  <img src="./imgs/fig1.png" alt="fig1" width="70%" />
+  <img src="./imgs/fig2.png" alt="fig2" width="70%" />
 </p>
+
 
 GridPulse is a challenging benchmark for electricity price forecasting in provincial spot markets. It contains 17,496 hourly observations from two markets with distinct mechanisms, together with 21 temporally aligned covariates and leakage-free preprocessing. Unlike existing public benchmarks that mainly reflect relatively stable market dynamics, GridPulse captures heterogeneous and highly volatile price regimes characterized by frequent negative prices, sharp price spikes, and abrupt regime shifts. It provides a unified evaluation protocol with three bounded, scale-normalized metrics—RSI, QRS, and HARI—and evaluates 11 representative forecasting models under both normal and extreme market conditions. GridPulse also includes PulseDiff as a reproducible baseline, offering a comprehensive testbed for developing robust electricity price forecasting methods in volatile markets.
 

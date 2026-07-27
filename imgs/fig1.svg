@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="1200" height="300" viewBox="0 0 1200 300"
+     role="img" aria-labelledby="title desc">
+  <title id="title">GridPulse</title>
+  <desc id="desc">GridPulse, an electricity price forecasting benchmark for extreme market dynamics, illustrated by observed and forecast price pulses crossing a zero-price baseline.</desc>
+
+  <g id="identity" transform="translate(56 38)">
+    <g id="category" transform="translate(0 0)">
+      <path d="M0 12H30" fill="none" stroke="#E85D04" stroke-width="5"/>
+      <text x="44" y="20"
+            fill="none" stroke="#FFFFFF" stroke-width="4" stroke-opacity=".82"
+            font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+            font-size="20" font-weight="700" letter-spacing="2.5">
+        ELECTRICITY PRICE FORECASTING BENCHMARK
+      </text>
+      <text x="44" y="20"
+            fill="#475467"
+            font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+            font-size="20" font-weight="700" letter-spacing="2.5">
+        ELECTRICITY PRICE FORECASTING BENCHMARK
+      </text>
+    </g>
+
+    <g id="project-name" transform="translate(0 48)">
+      <text x="0" y="94"
+            fill="none" stroke="#FFFFFF" stroke-width="9" stroke-opacity=".88"
+            font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif"
+            font-size="112" font-weight="800" letter-spacing="-5">Grid</text>
+      <text x="0" y="94"
+            fill="#101828"
+            font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif"
+            font-size="112" font-weight="800" letter-spacing="-5">Grid</text>
+      <text x="222" y="94"
+            fill="none" stroke="#FFFFFF" stroke-width="9" stroke-opacity=".88"
+            font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif"
+            font-size="112" font-weight="800" letter-spacing="-5">Pulse</text>
+      <text x="222" y="94"
+            fill="#E85D04"
+            font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif"
+            font-size="112" font-weight="800" letter-spacing="-5">Pulse</text>
+    </g>
+
+    <text x="2" y="202"
+          fill="none" stroke="#FFFFFF" stroke-width="5" stroke-opacity=".86"
+          font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif"
+          font-size="29" font-weight="520" letter-spacing=".2">
+      Forecasting under extreme market dynamics
+    </text>
+    <text x="2" y="202"
+          fill="#344054"
+          font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif"
+          font-size="29" font-weight="520" letter-spacing=".2">
+      Forecasting under extreme market dynamics
+    </text>
+  </g>
+
+  <g id="price-pulse" transform="translate(724 36)">
+    <text x="12" y="20"
+          fill="none" stroke="#FFFFFF" stroke-width="4" stroke-opacity=".82"
+          font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+          font-size="18" font-weight="700" letter-spacing="1.5">PRICE / 24H</text>
+    <text x="12" y="20"
+          fill="#667085"
+          font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+          font-size="18" font-weight="700" letter-spacing="1.5">PRICE / 24H</text>
+
+    <path d="M12 128H416"
+          fill="none" stroke="#667085" stroke-width="2" stroke-dasharray="7 8" opacity=".7"/>
+    <text x="421" y="134"
+          fill="none" stroke="#FFFFFF" stroke-width="4" stroke-opacity=".82"
+          font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+          font-size="18" font-weight="700">0</text>
+    <text x="421" y="134"
+          fill="#667085"
+          font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+          font-size="18" font-weight="700">0</text>
+
+    <path d="M12 127
+             C34 125 42 134 58 137
+             C75 140 79 179 96 180
+             C113 180 118 118 135 112
+             C151 107 160 122 176 116
+             C191 111 199 42 214 38
+             C228 35 236 144 252 146
+             C270 149 278 88 294 83"
+          fill="none" stroke="#E85D04" stroke-width="8"
+          stroke-linecap="round" stroke-linejoin="round"/>
+
+    <path d="M294 83
+             C310 79 318 104 334 101
+             C350 98 360 60 376 68
+             C391 75 398 114 416 108"
+          fill="none" stroke="#1282A2" stroke-width="8"
+          stroke-linecap="round" stroke-linejoin="round"/>
+
+    <circle cx="294" cy="83" r="7" fill="#FFFFFF" stroke="#101828" stroke-width="3"/>
+    <path d="M294 62V24" fill="none" stroke="#101828" stroke-width="2"/>
+    <text x="283" y="16"
+          fill="none" stroke="#FFFFFF" stroke-width="4" stroke-opacity=".86"
+          font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+          font-size="18" font-weight="800">t₀</text>
+    <text x="283" y="16"
+          fill="#101828"
+          font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+          font-size="18" font-weight="800">t₀</text>
+
+    <g id="legend" transform="translate(12 218)">
+      <path d="M0 0H34" fill="none" stroke="#E85D04" stroke-width="6" stroke-linecap="round"/>
+      <text x="46" y="7"
+            fill="none" stroke="#FFFFFF" stroke-width="4" stroke-opacity=".84"
+            font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+            font-size="18" font-weight="700">OBSERVED</text>
+      <text x="46" y="7"
+            fill="#344054"
+            font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+            font-size="18" font-weight="700">OBSERVED</text>
+      <path d="M174 0H208" fill="none" stroke="#1282A2" stroke-width="6" stroke-linecap="round"/>
+      <text x="220" y="7"
+            fill="none" stroke="#FFFFFF" stroke-width="4" stroke-opacity=".84"
+            font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+            font-size="18" font-weight="700">FORECAST</text>
+      <text x="220" y="7"
+            fill="#344054"
+            font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+            font-size="18" font-weight="700">FORECAST</text>
+    </g>
+  </g>
+</svg>
